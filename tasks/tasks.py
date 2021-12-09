@@ -15,7 +15,7 @@ class TaskSet:
 		for i, line in enumerate(lines):
 			line_wb = re.sub(r"[()]", "", line)
 			vals = np.fromstring(line_wb.strip(), dtype="float", sep=',')
-			#print(vals)
+			vals.append(i+1)
 			vals = np.round(vals, 1)
 			t = Task(vals)
 			self.tasks.append(t)
@@ -85,7 +85,9 @@ class Task:
 		self.period = values[1]
 		self.exec_time = values[2]
 		self.deadline = values[3]
+		self.ID = values[4]
 		self.jobCount = 0
+		self.currentCount = 1
 
 # # test code
 # filename = 'HW1table1-1.txt'
