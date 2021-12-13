@@ -31,8 +31,8 @@ class Q_module:
 
 
 
-	def train(self, hyperperiod, alpha=0.1, gamma=0.6, epsilon=0.3):
-		for i in range(10000):
+	def train(self, hyperperiod, n=10000, alpha=0.1, gamma=0.6, epsilon=0.3):
+		for i in range(n):
 
 			epochs, total_reward = 0, 0
 			t = -1
@@ -50,7 +50,7 @@ class Q_module:
 					action = self.actions[rand_idx]
 				else:
 					# Exploit: Pick the action with highest reward
-					action = self.actions[]
+					action = self.actions[0]
 
 				next_state = (t+1, action)
 				reward = self.calcReward(t, curr_action, action)
@@ -63,7 +63,7 @@ class Q_module:
 
 				next_max = 0
 				for key in q_table:
-					if key[0] == t and key[1] == action:
+					if key[0] == t+1 and key[1] == action:
 						if q_table[key] > next_max:
 							next_max = q_table[key]
 
@@ -83,7 +83,7 @@ class Q_module:
 		plt.plot(x_values, self.reward_history)
 		plt.title("Total reward vs iteration")
 		plt.xlable("iteration")
-		plt.ylabel("Reward")
+		plt.ylabel("Total Reward")
 
 		plt.show()
 
