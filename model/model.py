@@ -57,6 +57,7 @@ class Q_module:
 				if t != -1:
 					if action_obj.execution <= 0 :
 						action_obj.count += 1
+						action_obj.execution = action_obj.const_exec
 						action_obj.start = action_obj.count*action_obj.period
 
 					self.actions.append(action_obj)
@@ -120,7 +121,7 @@ class Q_module:
 			self.reward_history.append(total_reward)
 
 	def visualizeReward(self):
-		x_values = [i for i in range(1000)]
+		x_values = [i for i in range(300)]
 		print(len(self.reward_history), len(x_values))
 		plt.plot(x_values, self.reward_history)
 		plt.title("Total reward vs iteration")
