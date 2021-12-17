@@ -15,9 +15,9 @@ class TaskSet:
 		for i, line in enumerate(lines):
 			line_wb = re.sub(r"[()]", "", line)
 			vals = np.fromstring(line_wb.strip(), dtype="float", sep=',')
-			vals.append(i+1)
+			# print(vals)
 			vals = np.round(vals, 1)
-			t = Task(vals)
+			t = Task(vals, i+1)
 			self.tasks.append(t)
 
 	def calculateHyperperiod(self):
@@ -80,12 +80,12 @@ class TaskSet:
 
 
 class Task:
-	def __init__(self, values):
+	def __init__(self, values, id):
 		self.phase = values[0]
 		self.period = values[1]
 		self.exec_time = values[2]
 		self.deadline = values[3]
-		self.ID = values[4]
+		self.ID = id
 		self.jobCount = 0
 		self.currentCount = 1
 
